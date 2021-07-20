@@ -1,11 +1,22 @@
 import PropTypes from "prop-types";
+import { FaTimes } from "react-icons/fa";
 
 const Task = (props) => {
-  const { id, content, time } = props;
+  const { id, content, time, deleteHandler } = props;
   return (
-    <div>
-      <h2>{content}</h2>
-      <h4>{time}</h4>
+    <div className="task">
+      <h2>
+        {content}{" "}
+        <FaTimes
+          style={{ color: "red", float: "right" }}
+          onClick={() => {
+            deleteHandler(id);
+          }}
+        />
+      </h2>
+      <h4>
+        <i>{time}</i>
+      </h4>
     </div>
   );
 };

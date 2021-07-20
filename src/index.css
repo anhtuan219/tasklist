@@ -39,3 +39,10 @@ code {
   align-items: center;
   justify-content: space-around;
 }
+
+.task {
+  width: 80%;
+  background: #f4f4f4;
+  margin: 5px;
+  padding: 10px 20px;
+}
