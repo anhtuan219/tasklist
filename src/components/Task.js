@@ -2,11 +2,16 @@ import PropTypes from "prop-types";
 import { FaTimes } from "react-icons/fa";
 
 const Task = (props) => {
-  const { id, content, time, deleteHandler } = props;
+  const { id, content, time, complete, deleteHandler, completed } = props;
   return (
-    <div className="task">
+    <div
+      className={`task ${complete ? "completed" : ""}`}
+      onDoubleClick={() => {
+        completed(id);
+      }}
+    >
       <h2>
-        {content}{" "}
+        {content}
         <FaTimes
           style={{ color: "red", float: "right" }}
           onClick={() => {
