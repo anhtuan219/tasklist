@@ -15,22 +15,45 @@ code {
 }
 
 .header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-
-.header h2,
-.header div {
+  margin: 2rem;
   text-align: center;
 }
 
-.btn-add {
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 255, 158);
+  width: 40%;
+  margin: 2rem auto;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+td {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.have-btn {
+  text-align: center;
+  margin: 1rem;
+}
+
+form .btn-submit {
   border-radius: 0.25rem;
   padding: 0.5rem;
-  background-color: skyblue;
+  background-color: lightskyblue;
   color: white;
   border: 1px solid #eee;
+}
+
+form .btn-submit:hover {
+  background-color: skyblue;
+  color: #eee;
 }
 
 .task-list {

@@ -5,11 +5,6 @@ const Header = (props) => {
   return (
     <header className="header">
       <h2>{title}</h2>
-      <div>
-        <button type="button" className="btn-add">
-          Add
-        </button>
-      </div>
     </header>
   );
 };
