@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-const AddTask = () => {
+const AddTask = (props) => {
   //state
   const [content, setContent] = useState("");
   const [time, setTime] = useState("2020-09-18");
   const [complete, setComplete] = useState(false);
+  //props action
+  const { addTask } = props;
+
   return (
     <form>
       <table>
@@ -52,7 +55,15 @@ const AddTask = () => {
         </tbody>
       </table>
       <div className="have-btn">
-        <input type="submit" value="Add task" className="btn-submit" />
+        <button
+          type="button"
+          className="btn-submit"
+          onClick={() => {
+            addTask({ content: content, time: time, complete: complete });
+          }}
+        >
+          Add task
+        </button>
       </div>
     </form>
   );

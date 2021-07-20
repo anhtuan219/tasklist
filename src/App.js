@@ -7,7 +7,6 @@ const App = () => {
   return (
     <>
       <Header title="To do Task" />
-      <AddTask />
       <TaskList />
     </>
   );
