@@ -1,15 +1,35 @@
 import { useState } from "react";
 
 const AddTask = (props) => {
+  const d = new Date();
   //state
   const [content, setContent] = useState("");
-  const [time, setTime] = useState("2020-09-18");
-  const [complete, setComplete] = useState(false);
+  const [time, setTime] = useState(
+    `${d.getFullYear()}-${
+      d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1
+    }-${d.getDate()}`
+  );
   //props action
   const { addTask } = props;
+  //action
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!content) {
+      alert("Please input task'content");
+      return;
+    }
+    addTask({ content: content, time: time, complete: false });
+    setContent("");
+    let nd = new Date();
+    setTime(
+      `${nd.getFullYear()}-${
+        nd.getMonth() + 1 < 10 ? "0" + (nd.getMonth() + 1) : nd.getMonth() + 1
+      }-${nd.getDate()}`
+    );
+  };
 
   return (
-    <form>
+    <form method="post" onSubmit={submitHandler}>
       <table>
         <tbody>
           <tr>
@@ -39,31 +59,10 @@ const AddTask = (props) => {
               />
             </td>
           </tr>
-          <tr>
-            <td>
-              <label htmlFor="complete">Task's status</label>
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                id="complete"
-                value={complete}
-                onChange={(e) => setComplete(e.currentTarget.checked)}
-              />
-            </td>
-          </tr>
         </tbody>
       </table>
       <div className="have-btn">
-        <button
-          type="button"
-          className="btn-submit"
-          onClick={() => {
-            addTask({ content: content, time: time, complete: complete });
-          }}
-        >
-          Add task
-        </button>
+        <input type="submit" className="btn-submit" value="Add task" />
       </div>
     </form>
   );
