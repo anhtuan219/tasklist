@@ -38,6 +38,19 @@ code {
   color: lightgray;
 }
 
+.btn-close {
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: red;
+  color: white;
+  border: 1px solid #eee;
+}
+
+.btn-close:hover {
+  background-color: crimson;
+  color: lightgray;
+}
+
 form {
   display: flex;
   flex-direction: column;

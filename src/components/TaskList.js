@@ -41,7 +41,7 @@ const TaskList = () => {
 
   return (
     <section className="absolute">
-      <Header title="To do Task" showAddTask={showAddTask} />
+      <Header title="To do Task" setAdd={setAdd} showAddTask={showAddTask} />
       {setAdd && <AddTask addTask={addTask} />}
       <div className="task-list">
         {tasks.length > 0 ? (

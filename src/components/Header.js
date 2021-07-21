@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 
 const Header = (props) => {
-  const { title, showAddTask } = props;
+  const { title, setAdd, showAddTask } = props;
   return (
     <header className="header">
       <h2>{title}</h2>
       <div>
-        <button type="button" className="btn-add" onClick={showAddTask}>
-          Add task
+        <button
+          type="button"
+          className={setAdd ? "btn-close" : "btn-add"}
+          onClick={showAddTask}
+        >
+          {setAdd ? "Close" : "Add"}
         </button>
       </div>
     </header>
@@ -20,6 +24,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
   title: PropTypes.string,
+  setAdd: PropTypes.bool,
   showAddTask: PropTypes.func,
 };
 
