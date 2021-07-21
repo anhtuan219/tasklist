@@ -1,9 +1,14 @@
 import { useState } from "react";
 
 const AddTask = (props) => {
+  const d = new Date();
   //state
   const [content, setContent] = useState("");
-  const [time, setTime] = useState("2020-09-18");
+  const [time, setTime] = useState(
+    `${d.getFullYear()}-${
+      d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1
+    }-${d.getDate()}`
+  );
   const [complete, setComplete] = useState(false);
   //props action
   const { addTask } = props;
@@ -62,7 +67,14 @@ const AddTask = (props) => {
           onClick={() => {
             addTask({ content: content, time: time, complete: complete });
             setContent("");
-            setTime("2020-09-18");
+            let nd = new Date();
+            setTime(
+              `${nd.getFullYear()}-${
+                nd.getMonth() + 1 < 10
+                  ? "0" + (nd.getMonth() + 1)
+                  : nd.getMonth() + 1
+              }-${nd.getDate()}`
+            );
             setComplete(false);
           }}
         >
