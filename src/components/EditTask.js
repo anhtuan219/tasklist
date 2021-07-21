@@ -1,15 +1,11 @@
 import { useState } from "react";
 
 const EditTask = (props) => {
-  const d = new Date();
+  const { ID, CONTENT, TIME, editHandlerTask, showEditTask } = props;
   //state
-  const [content, setContent] = useState("");
-  const [time, setTime] = useState(
-    `${d.getFullYear()}-${
-      d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1
-    }-${d.getDate()}`
-  );
-  const [complete, setComplete] = useState(false);
+  const [id, setId] = useState(ID);
+  const [content, setContent] = useState(CONTENT);
+  const [time, setTime] = useState(TIME);
   //props action
   const { editTask } = props;
 
@@ -25,7 +21,7 @@ const EditTask = (props) => {
               <input
                 type="text"
                 id="content"
-                placeholder="Add task's content"
+                placeholder="Edit task's content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
@@ -44,20 +40,6 @@ const EditTask = (props) => {
               />
             </td>
           </tr>
-          <tr>
-            <td>
-              <label htmlFor="complete">Task's status</label>
-            </td>
-            <td>
-              <input
-                type="checkbox"
-                id="complete"
-                checked={complete}
-                value={complete}
-                onChange={(e) => setComplete(e.currentTarget.checked)}
-              />
-            </td>
-          </tr>
         </tbody>
       </table>
       <div className="have-btn">
@@ -65,17 +47,8 @@ const EditTask = (props) => {
           type="button"
           className="btn-submit"
           onClick={() => {
-            editTask({ content: content, time: time, complete: complete });
-            setContent("");
-            let nd = new Date();
-            setTime(
-              `${nd.getFullYear()}-${
-                nd.getMonth() + 1 < 10
-                  ? "0" + (nd.getMonth() + 1)
-                  : nd.getMonth() + 1
-              }-${nd.getDate()}`
-            );
-            setComplete(false);
+            editHandlerTask({ content: content, time: time });
+            showEditTask();
           }}
         >
           Confirm change

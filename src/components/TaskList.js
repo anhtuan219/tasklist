@@ -39,6 +39,14 @@ const TaskList = () => {
     setSetAdd(!setAdd);
   };
 
+  const editHandler = (id, taskUpdate) => {
+    setTasks(
+      tasks.map((task) => {
+        return task.id === id ? { ...task, ...taskUpdate } : task;
+      })
+    );
+  };
+
   return (
     <section className="absolute">
       <Header title="Task List" setAdd={setAdd} showAddTask={showAddTask} />
@@ -52,6 +60,7 @@ const TaskList = () => {
                 {...task}
                 deleteHandler={deleteHandler}
                 completed={completed}
+                editHandler={editHandler}
               />
             );
           })
