@@ -36,6 +36,7 @@ code {
 .btn-add:hover {
   background-color: green;
   color: lightgray;
+  cursor: pointer;
 }
 
 .btn-close {
@@ -49,13 +50,15 @@ code {
 .btn-close:hover {
   background-color: crimson;
   color: lightgray;
+  cursor: pointer;
 }
 
-form {
+.form-add {
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(255, 255, 158);
+  background-color: palegreen;
   width: 40%;
   margin: 2rem auto;
 }
@@ -86,6 +89,7 @@ form .btn-submit {
 form .btn-submit:hover {
   background-color: skyblue;
   color: #eee;
+  cursor: pointer;
 }
 
 .task-list {
@@ -105,4 +109,27 @@ form .btn-submit:hover {
 
 .completed {
   border: 5px solid greenyellow;
+}
+
+.btn-edit {
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #eee;
+  background-color: khaki;
+}
+
+.btn-edit:hover {
+  color: lightgray;
+  background-color: darkkhaki;
+  cursor: pointer;
+}
+
+.form-edit {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: palegoldenrod;
+  width: 40%;
+  margin: 2rem auto;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddTask = (props) => {
+const EditTask = (props) => {
   const d = new Date();
   //state
   const [content, setContent] = useState("");
@@ -11,10 +11,10 @@ const AddTask = (props) => {
   );
   const [complete, setComplete] = useState(false);
   //props action
-  const { addTask } = props;
+  const { editTask } = props;
 
   return (
-    <form className="form-add">
+    <form className="form-edit">
       <table>
         <tbody>
           <tr>
@@ -65,7 +65,7 @@ const AddTask = (props) => {
           type="button"
           className="btn-submit"
           onClick={() => {
-            addTask({ content: content, time: time, complete: complete });
+            editTask({ content: content, time: time, complete: complete });
             setContent("");
             let nd = new Date();
             setTime(
@@ -78,11 +78,11 @@ const AddTask = (props) => {
             setComplete(false);
           }}
         >
-          Submit task
+          Confirm change
         </button>
       </div>
     </form>
   );
 };
 
-export default AddTask;
+export default EditTask;
