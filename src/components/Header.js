@@ -4,7 +4,12 @@ const Header = (props) => {
   const { title, setAdd, showAddTask } = props;
   return (
     <header className="header">
-      <h2>{title}</h2>
+      <h1
+        className="title"
+        style={{ color: "greenyellow", fontSize: "2.5rem" }}
+      >
+        {title}
+      </h1>
       <div>
         <button
           type="button"

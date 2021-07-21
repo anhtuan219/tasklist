@@ -20,7 +20,7 @@ code {
   align-items: center;
 }
 
-.header h2,
+.header .title,
 .header div {
   text-align: center;
 }
