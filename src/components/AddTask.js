@@ -47,6 +47,7 @@ const AddTask = (props) => {
               <input
                 type="checkbox"
                 id="complete"
+                checked={complete}
                 value={complete}
                 onChange={(e) => setComplete(e.currentTarget.checked)}
               />
@@ -60,6 +61,9 @@ const AddTask = (props) => {
           className="btn-submit"
           onClick={() => {
             addTask({ content: content, time: time, complete: complete });
+            setContent("");
+            setTime("2020-09-18");
+            setComplete(false);
           }}
         >
           Add task
