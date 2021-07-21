@@ -78,7 +78,7 @@ const AddTask = (props) => {
             setComplete(false);
           }}
         >
-          Add task
+          Submit task
         </button>
       </div>
     </form>

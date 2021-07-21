@@ -15,8 +15,27 @@ code {
 }
 
 .header {
-  margin: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.header h2,
+.header div {
   text-align: center;
+}
+
+.btn-add {
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  background-color: limegreen;
+  color: white;
+  border: 1px solid #eee;
+}
+
+.btn-add:hover {
+  background-color: green;
+  color: lightgray;
 }
 
 form {

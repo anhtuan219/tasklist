@@ -2,12 +2,16 @@ import Task from "./Task";
 import { useState } from "react";
 import arrayTasks from "../data/tasksArray";
 import AddTask from "./AddTask";
+import Header from "./Header";
 
 const TaskList = () => {
   // state
   const [tasks, setTasks] = useState(arrayTasks);
   // use numTask for set id, prevent same id when add task using tasks.length
   const [numTask, setNumTask] = useState(tasks.length);
+  // use setAdd to show AddTask form
+  const [setAdd, setSetAdd] = useState(false);
+  //end state
   // action
   const deleteHandler = (id) => {
     setTasks(
@@ -31,10 +35,14 @@ const TaskList = () => {
     setNumTask(idAddedTask);
     console.log(`Added task with id ${idAddedTask}`);
   };
+  const showAddTask = () => {
+    setSetAdd(!setAdd);
+  };
 
   return (
-    <section>
-      <AddTask addTask={addTask} />
+    <section className="absolute">
+      <Header title="To do Task" showAddTask={showAddTask} />
+      {setAdd && <AddTask addTask={addTask} />}
       <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => {
