@@ -48,7 +48,7 @@ const TaskList = () => {
   };
 
   return (
-    <section className="absolute">
+    <div className="container">
       <Header title="Task List" setAdd={setAdd} showAddTask={showAddTask} />
       {setAdd && <AddTask addTask={addTask} />}
       <div className="task-list">
@@ -68,7 +68,7 @@ const TaskList = () => {
           <h2>No Task To Show</h2>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 
