@@ -74,10 +74,30 @@ const TaskList = () => {
     setSetAdd(!setAdd);
   };
 
-  const editHandler = (id, taskUpdate) => {
+  const editHandler = async (id, taskUpdate) => {
+    // get task with specified id
+    const fetchTasksWithId = async (id) => {
+      const res = await fetch(`http://localhost:5000/tasks/${id}`);
+      const data = await res.json();
+      return data;
+    };
+    const taskToEdit = await fetchTasksWithId(id);
+    // Edit task
+    const taskUpdated = {
+      ...taskToEdit,
+      ...taskUpdate,
+    };
+    // update json server
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(taskUpdated),
+    });
+    const data = await res.json();
+    //update components
     setTasks(
       tasks.map((task) => {
-        return task.id === id ? { ...task, ...taskUpdate } : task;
+        return task.id === id ? data : task;
       })
     );
     console.log(`Edited task with id ${id}`);
