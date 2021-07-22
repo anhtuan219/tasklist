@@ -56,7 +56,7 @@ const TaskList = () => {
         return task.id === id ? data : task;
       })
     );
-    console.log(`complete of id ${id} has been change`);
+    console.log(`Toggled complete of task with id ${id}`);
   };
 
   const addTask = async (task) => {
