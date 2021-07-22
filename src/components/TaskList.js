@@ -1,17 +1,27 @@
 import Task from "./Task";
-import { useState } from "react";
-import arrayTasks from "../data/tasksArray";
+import { useState, useEffect } from "react";
 import AddTask from "./AddTask";
 import Header from "./Header";
 
 const TaskList = () => {
   // state
-  const [tasks, setTasks] = useState(arrayTasks);
+  const [tasks, setTasks] = useState([]);
   // use numTask for set id, prevent same id when add task using tasks.length
-  const [numTask, setNumTask] = useState(tasks.length);
+  const [numTask, setNumTask] = useState(0);
   // use setAdd to show AddTask form
   const [setAdd, setSetAdd] = useState(false);
   //end state
+  //effect
+  useEffect(() => {
+    //fetch data from json server
+    const fetchTasks = async () => {
+      const res = await fetch("http://localhost:5000/tasks");
+      const data = await res.json();
+      setTasks(data);
+      setNumTask(data.length);
+    };
+    fetchTasks();
+  }, []);
   // action
   const deleteHandler = (id) => {
     setTasks(
