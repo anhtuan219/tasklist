@@ -23,13 +23,14 @@ const TaskList = () => {
     fetchTasks();
   }, []);
   // action
-  const deleteHandler = (id) => {
+  const deleteHandler = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, { method: "DELETE" });
     setTasks(
       tasks.filter((task) => {
         return task.id !== id;
       })
     );
-    console.log(`Delete id ${id}`);
+    console.log(`Deleted task with id ${id}`);
   };
   const completed = (id) => {
     setTasks(
@@ -55,6 +56,7 @@ const TaskList = () => {
         return task.id === id ? { ...task, ...taskUpdate } : task;
       })
     );
+    console.log(`Edited task with id ${id}`);
   };
 
   return (
