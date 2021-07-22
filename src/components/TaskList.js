@@ -6,8 +6,6 @@ import Header from "./Header";
 const TaskList = () => {
   // state
   const [tasks, setTasks] = useState([]);
-  // use numTask for set id, prevent same id when add task using tasks.length
-  const [numTask, setNumTask] = useState(0);
   // use setAdd to show AddTask form
   const [setAdd, setSetAdd] = useState(false);
   //end state
@@ -18,7 +16,6 @@ const TaskList = () => {
       const res = await fetch("http://localhost:5000/tasks");
       const data = await res.json();
       setTasks(data);
-      setNumTask(data.length);
     };
     fetchTasks();
   }, []);
@@ -40,11 +37,15 @@ const TaskList = () => {
     );
     console.log(`complete of id ${id} has been change`);
   };
-  const addTask = (task) => {
-    let idAddedTask = numTask + 1;
-    setTasks([...tasks, { id: idAddedTask, ...task }]);
-    setNumTask(idAddedTask);
-    console.log(`Added task with id ${idAddedTask}`);
+  const addTask = async (task) => {
+    const res = await fetch("http://localhost:5000/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(task),
+    });
+    const taskAddedFromServer = await res.json();
+    setTasks([...tasks, taskAddedFromServer]);
+    console.log(`Added task with id ${taskAddedFromServer.id}`);
   };
   const showAddTask = () => {
     setSetAdd(!setAdd);
