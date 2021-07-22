@@ -29,14 +29,36 @@ const TaskList = () => {
     );
     console.log(`Deleted task with id ${id}`);
   };
-  const completed = (id) => {
+
+  const completed = async (id) => {
+    // get task with specified id
+    const fetchTasksWithId = async (id) => {
+      const res = await fetch(`http://localhost:5000/tasks/${id}`);
+      const data = await res.json();
+      return data;
+    };
+    const taskToToggleComplete = await fetchTasksWithId(id);
+    // toggle complete
+    const taskUpdated = {
+      ...taskToToggleComplete,
+      complete: !taskToToggleComplete.complete,
+    };
+    // update json server
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(taskUpdated),
+    });
+    const data = await res.json();
+    //update components
     setTasks(
       tasks.map((task) => {
-        return task.id === id ? { ...task, complete: !task.complete } : task;
+        return task.id === id ? data : task;
       })
     );
     console.log(`complete of id ${id} has been change`);
   };
+
   const addTask = async (task) => {
     const res = await fetch("http://localhost:5000/tasks", {
       method: "POST",
@@ -47,6 +69,7 @@ const TaskList = () => {
     setTasks([...tasks, taskAddedFromServer]);
     console.log(`Added task with id ${taskAddedFromServer.id}`);
   };
+
   const showAddTask = () => {
     setSetAdd(!setAdd);
   };
