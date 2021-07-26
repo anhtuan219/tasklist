@@ -1,3 +1,11 @@
+# How to run project
+
+- In the project directory, open terminal
+- Type 'npm install' to install dependencies
+- Type 'npm run server' to run script that run json-server in localhost with port 5000
+- Type 'yarn start' to run the app in the development mode
+- Open browser and type 'http://localhost:3000'
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
