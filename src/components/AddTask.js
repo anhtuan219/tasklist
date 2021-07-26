@@ -11,7 +11,7 @@ const AddTask = (props) => {
   );
   const [complete, setComplete] = useState(false);
   //props action
-  const { addTask } = props;
+  const { addTask, showAddTask } = props;
 
   return (
     <form className="form-add">
@@ -76,6 +76,7 @@ const AddTask = (props) => {
               }-${nd.getDate()}`
             );
             setComplete(false);
+            showAddTask();
           }}
         >
           Submit task

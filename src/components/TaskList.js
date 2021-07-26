@@ -106,7 +106,7 @@ const TaskList = () => {
   return (
     <div className="container">
       <Header title="Task List" setAdd={setAdd} showAddTask={showAddTask} />
-      {setAdd && <AddTask addTask={addTask} />}
+      {setAdd && <AddTask addTask={addTask} showAddTask={showAddTask} />}
       <div className="task-list">
         {tasks.length > 0 ? (
           tasks.map((task) => {
