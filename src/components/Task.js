@@ -34,7 +34,7 @@ const Task = (props) => {
       <h2>
         {content}
         <FaTimes
-          style={{ color: "red", float: "right" }}
+          style={{ color: "red", float: "right", cursor: "pointer" }}
           onClick={() => {
             deleteHandler(id);
           }}
