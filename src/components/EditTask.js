@@ -6,8 +6,6 @@ const EditTask = (props) => {
   const [id, setId] = useState(ID);
   const [content, setContent] = useState(CONTENT);
   const [time, setTime] = useState(TIME);
-  //props action
-  const { editTask } = props;
 
   return (
     <form className="form-edit">
