@@ -16,6 +16,8 @@ code {
 
 :root {
   --dot-size: 1rem;
+  --spinner-size: 4rem;
+  --spinner-border-width: 8px;
 }
 
 .loading-wrapper {
@@ -59,6 +61,21 @@ span.loader__ball.loader__ball--2 {
   30% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+.spinner {
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border: var(--spinner-border-width) solid #bdbdbd;
+  border-radius: 50%;
+  border-top-color: #689f38;
+  animation: spinnerAnimation 0.6s linear infinite;
+}
+
+@keyframes spinnerAnimation {
+  to {
+    transform: rotate(360deg);
   }
 }
 
