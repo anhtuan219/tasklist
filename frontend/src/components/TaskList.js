@@ -1,7 +1,7 @@
-import Task from "./Task";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 import Header from "./Header";
+import Task from "./Task";
 
 const TaskList = () => {
   // state
@@ -13,9 +13,18 @@ const TaskList = () => {
   useEffect(() => {
     //fetch data from json server
     const fetchTasks = async () => {
-      const res = await fetch("http://localhost:5000/tasks");
-      const data = await res.json();
-      setTasks(data);
+      try {
+        const res = await fetch("http://localhost:5000/tasks");
+        if (res.ok) {
+          const data = await res.json();
+          setTasks(data);
+        } else {
+          const errMsg = `There was an error "${res.status} ${res.statusText}"`;
+          throw new Error(errMsg);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchTasks();
   }, []);

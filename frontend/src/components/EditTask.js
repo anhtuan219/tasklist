@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 const EditTask = (props) => {
-  const { ID, CONTENT, TIME, editHandlerTask, showEditTask } = props;
+  const { CONTENT, TIME, editHandlerTask, showEditTask } = props;
   //state
-  const [id, setId] = useState(ID);
   const [content, setContent] = useState(CONTENT);
   const [time, setTime] = useState(TIME);
 

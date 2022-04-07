@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
-import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import EditTask from "./EditTask";
 
 const Task = (props) => {
   const { id, content, time, complete, deleteHandler, completed, editHandler } =
     props;
   // state
-  const [ID, setID] = useState(id);
   const [CONTENT, setCONTENT] = useState(content);
   const [TIME, setTIME] = useState(time);
   // use state setEdit to show AddTask form
@@ -22,7 +21,7 @@ const Task = (props) => {
     let { content, time } = taskUpdate;
     setCONTENT(content);
     setTIME(time);
-    editHandler(ID, taskUpdate);
+    editHandler(id, taskUpdate);
   };
   return (
     <div
@@ -52,7 +51,7 @@ const Task = (props) => {
       </h4>
       {setEdit && (
         <EditTask
-          ID={ID}
+          ID={id}
           CONTENT={CONTENT}
           TIME={TIME}
           editHandlerTask={editHandlerTask}
