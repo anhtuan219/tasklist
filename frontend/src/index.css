@@ -14,6 +14,54 @@ code {
     monospace;
 }
 
+:root {
+  --dot-size: 1rem;
+}
+
+.loading-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span.loader__ball {
+  display: inline-block;
+  margin: auto calc(var(--dot-size) * 3 / 4);
+  height: var(--dot-size);
+  width: var(--dot-size);
+  border-radius: calc(var(--dot-size) / 2);
+  background: green;
+}
+
+span.loader__ball.loader__ball--1,
+span.loader__ball.loader__ball--2,
+span.loader__ball.loader__ball--3 {
+  animation: bulging 2s infinite ease-in-out;
+}
+
+span.loader__ball.loader__ball--1 {
+  animation-delay: -0.4s;
+}
+
+span.loader__ball.loader__ball--2 {
+  animation-delay: -0.2s;
+}
+
+@keyframes bulging {
+  0%,
+  90%,
+  100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .container {
   margin: 2rem;
   padding: 0 2rem 2.5rem;
