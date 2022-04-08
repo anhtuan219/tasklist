@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const EditTask = (props) => {
-  const { CONTENT, TIME, editHandlerTask, showEditTask } = props;
+  const { CONTENT, TIME, editHandlerTask, toggleIsEdit } = props;
   //state
   const [content, setContent] = useState(CONTENT);
   const [time, setTime] = useState(TIME);
@@ -45,7 +45,7 @@ const EditTask = (props) => {
           className="btn-submit"
           onClick={() => {
             editHandlerTask({ content: content, time: time });
-            showEditTask();
+            toggleIsEdit();
           }}
         >
           Confirm change

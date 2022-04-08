@@ -4,17 +4,33 @@ const AddTask = (props) => {
   const d = new Date();
   //state
   const [content, setContent] = useState("");
-  const [time, setTime] = useState(
+  const [date, setDate] = useState(
     `${d.getFullYear()}-${
       d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1
-    }-${d.getDate()}`
+    }-${d.getDate() < 10 ? "0" + d.getDate() : d.getDate()}`
   );
   const [complete, setComplete] = useState(false);
   //props action
-  const { addTask, showAddTask } = props;
+  const { addTask, toggleIsShowAddForm } = props;
 
   return (
-    <form className="form-add">
+    <form
+      className="form-add"
+      onSubmit={() => {
+        addTask({ content: content, time: date, complete: complete });
+        setContent("");
+        let nd = new Date();
+        setDate(
+          `${nd.getFullYear()}-${
+            nd.getMonth() + 1 < 10
+              ? "0" + (nd.getMonth() + 1)
+              : nd.getMonth() + 1
+          }-${nd.getDate()}`
+        );
+        setComplete(false);
+        toggleIsShowAddForm();
+      }}
+    >
       <table>
         <tbody>
           <tr>
@@ -28,19 +44,20 @@ const AddTask = (props) => {
                 placeholder="Add task's content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                required
               />
             </td>
           </tr>
           <tr>
             <td>
-              <label htmlFor="time">Task's start date</label>
+              <label htmlFor="date">Task's start date</label>
             </td>
             <td>
               <input
                 type="date"
-                id="time"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
+                id="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
               />
             </td>
           </tr>
@@ -61,24 +78,7 @@ const AddTask = (props) => {
         </tbody>
       </table>
       <div className="have-btn">
-        <button
-          type="button"
-          className="btn-submit"
-          onClick={() => {
-            addTask({ content: content, time: time, complete: complete });
-            setContent("");
-            let nd = new Date();
-            setTime(
-              `${nd.getFullYear()}-${
-                nd.getMonth() + 1 < 10
-                  ? "0" + (nd.getMonth() + 1)
-                  : nd.getMonth() + 1
-              }-${nd.getDate()}`
-            );
-            setComplete(false);
-            showAddTask();
-          }}
-        >
+        <button type="submit" className="btn-submit">
           Submit task
         </button>
       </div>

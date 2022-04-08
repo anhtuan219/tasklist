@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Header = (props) => {
-  const { title, setAdd, showAddTask } = props;
+  const { title, isShowAddForm, toggleIsShowAddForm } = props;
   return (
     <header className="header">
       <h1
@@ -13,10 +13,10 @@ const Header = (props) => {
       <div>
         <button
           type="button"
-          className={setAdd ? "btn-close" : "btn-add"}
-          onClick={showAddTask}
+          className={isShowAddForm ? "btn-close" : "btn-add"}
+          onClick={toggleIsShowAddForm}
         >
-          {setAdd ? "Close" : "Add"}
+          {isShowAddForm ? "Close" : "Add"}
         </button>
       </div>
     </header>

@@ -4,18 +4,24 @@ import { FaTimes } from "react-icons/fa";
 import EditTask from "./EditTask";
 
 const Task = (props) => {
-  const { id, content, time, complete, deleteHandler, completed, editHandler } =
-    props;
+  const {
+    id,
+    content,
+    time,
+    complete,
+    deleteHandler,
+    toggleComplete,
+    editHandler,
+  } = props;
   // state
   const [CONTENT, setCONTENT] = useState(content);
   const [TIME, setTIME] = useState(time);
-  // use state setEdit to show AddTask form
-  const [setEdit, setSetEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   // end state
 
   //actions
-  const showEditTask = () => {
-    setSetEdit(!setEdit);
+  const toggleIsEdit = () => {
+    setIsEdit(!isEdit);
   };
   const editHandlerTask = (taskUpdate) => {
     let { content, time } = taskUpdate;
@@ -27,7 +33,7 @@ const Task = (props) => {
     <div
       className={`task ${complete ? "completed" : ""}`}
       onDoubleClick={() => {
-        completed(id);
+        toggleComplete(id);
       }}
     >
       <h2>
@@ -43,19 +49,19 @@ const Task = (props) => {
         <i>{time}</i>
         <button
           style={{ float: "right" }}
-          className={setEdit ? "btn-close" : "btn-edit"}
-          onClick={showEditTask}
+          className={isEdit ? "btn-close" : "btn-edit"}
+          onClick={toggleIsEdit}
         >
-          {setEdit ? "Close" : "Edit"}
+          {isEdit ? "Close" : "Edit"}
         </button>
       </h4>
-      {setEdit && (
+      {isEdit && (
         <EditTask
           ID={id}
           CONTENT={CONTENT}
           TIME={TIME}
           editHandlerTask={editHandlerTask}
-          showEditTask={showEditTask}
+          toggleIsEdit={toggleIsEdit}
         />
       )}
     </div>
