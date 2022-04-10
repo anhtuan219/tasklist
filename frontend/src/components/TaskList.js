@@ -6,7 +6,7 @@ const AddTask = lazy(() => import("./AddTask"));
 const Header = lazy(() => import("./Header"));
 const Task = lazy(() => import("./Task"));
 
-const urlBackend = "http://localhost:5000/";
+const urlBackend = "https://tasklist-server-tuan219.herokuapp.com/";
 
 const TaskList = () => {
   // state
